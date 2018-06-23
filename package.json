@@ -1,0 +1,15 @@
+{
+  "name": "zilez",
+  "version": "1.0.0",
+  "main": "src/ziles.js",
+  "repository": "https://github.com/gustavofsantos/zilez.git",
+  "author": "Gustavo Santos <gfdsantos@inf.ufpel.edu.br>",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests/zilez.test.js"
+  },
+  "dependencies": {
+    "chokidar": "^2.0.4",
+    "crypto-js": "^3.1.9-1"
+  }
+}
