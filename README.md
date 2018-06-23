@@ -4,6 +4,33 @@ zilez is a library to watch changes inside a givin path, can generate signatures
 
 Is built using chokidar and crypto-js.
 
+## API
+
+#### observe(path, listener)
+
+Take a full path to a directory and a listener that will be called on every file or directory changes.
+
+Example:
+```javascript
+zz.observe('/home', p => console.log(p));
+```
+
+#### snapshot()
+
+Return a snapshot from current state of directory
+
+Example:
+```
+const snapshot = zz.snapshot();
+// snapshot is
+{
+    entries: array of (key, value) with all files and signatures,
+    length: number of files and directories in this directory,
+    timestamp: a time stamp
+    date: pretty date when this package was created
+}
+```
+
 ## How to use
 
 ```javascript
