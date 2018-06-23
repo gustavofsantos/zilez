@@ -1,7 +1,7 @@
 {
   "name": "zilez",
   "version": "1.0.3",
-  "main": "src/ziles.js",
+  "main": "src/zilez.js",
   "repository": "https://github.com/gustavofsantos/zilez.git",
   "author": "Gustavo Santos <gfdsantos@inf.ufpel.edu.br>",
   "license": "MIT",

@@ -5,6 +5,7 @@ const ppf = require('./pretty-path-formatter');
 
 let watcher, db, rootPath;
 
+
 /**
  * Generate a signature of a file
  * @param {string} filepath 
