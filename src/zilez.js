@@ -16,7 +16,7 @@ function hasSignature(sign, filepath) {
 	return sign === sha256(file).toString();
 }
 
-function observe(path) {
+function observe(path, handler) {
 	watcher = chokidar.watch(path, {
 	    ignored: /(^|[\/\\])\../,
 	    persistent: true
@@ -24,7 +24,7 @@ function observe(path) {
 
 	rootPath = path.split('/').pop();
 	db = new Map();
-	onChange();
+	onChange(handler);
 }
 
 function onChange(listener) {
@@ -71,8 +71,7 @@ function onChange(listener) {
 	watcher.on('error', error => {
 		console.log(error);
 		listener({
-			operation: 'error',
-			cause: error
+			error
 		});
 	});
 }
@@ -87,7 +86,7 @@ function snapshot() {
 	return package;
 }
 
-function keys() {
+function files() {
 	return db.keys();
 }
 
@@ -98,6 +97,6 @@ function length() {
 module.exports = {
 	observe,
 	snapshot,
-	keys,
+	files,
 	length
 }
