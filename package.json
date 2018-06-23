@@ -6,10 +6,13 @@
   "author": "Gustavo Santos <gfdsantos@inf.ufpel.edu.br>",
   "license": "MIT",
   "scripts": {
-    "test": "node tests/zilez.test.js"
+    "test": "mocha tests/zilez.test.js"
   },
   "dependencies": {
     "chokidar": "^2.0.4",
     "crypto-js": "^3.1.9-1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }

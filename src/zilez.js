@@ -1,7 +1,6 @@
 const chokidar = require('chokidar');
 const fs = require('fs');
 const sha256 = require('crypto-js/sha256');
-const { Maybe, Just, Nothing } = require('./maybe');
 const ppf = require('./pretty-path-formatter');
 
 let watcher, db, rootPath;
@@ -24,6 +23,7 @@ function observe(path, handler) {
 
 	rootPath = path.split('/').pop();
 	db = new Map();
+	console.log('rootpath: ', rootPath);
 	onChange(handler);
 }
 
@@ -32,7 +32,7 @@ function onChange(listener) {
 		db.set(ppf(rootPath, path), signature(path));
 		listener({
 			operation: 'add',
-			path
+			path: ppf(rootPath, path)
 		});
 	});
 	
@@ -40,7 +40,7 @@ function onChange(listener) {
 		db.set(ppf(rootPath, path), signature(path));
 		listener({
 			operation: 'change',
-			path
+			path: ppf(rootPath, path)
 		});
 	});
 	
@@ -48,7 +48,6 @@ function onChange(listener) {
 		db.delete(ppf(rootPath, path), signature(path));
 		listener({
 			operation: 'unlink',
-			path
 		});
 	});
 	
@@ -56,15 +55,15 @@ function onChange(listener) {
 		db.set(ppf(rootPath, path), sha256(rootPath));
 		listener({
 			operation: 'addDir',
-			path
+			path: ppf(rootPath, path)
 		});
 	});
-
+	
 	watcher.on('unlinkDir', path => {
 		db.delete(ppf(rootPath, path), sha256(rootPath));
 		listener({
 			operation: 'unlinkDir',
-			path
+			path: ppf(rootPath, path)
 		});
 	});
 
